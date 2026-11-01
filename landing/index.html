@@ -20,7 +20,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://pan.jaybulb.com/og.png">
 <link rel="stylesheet" href="landing.css">
+<link rel="stylesheet" href="hero.css">
 <script src="landing.js" defer></script>
+<script src="hero.js" defer></script>
 </head>
 <body>
 
@@ -37,20 +39,14 @@
 <!-- Art: Pan pursuing Syrinx into the reeds that become his pipes, engraved by Bernard Picart (1733, Rijksmuseum, CC0), the scene without its frame,
      dithered to a halftone mask by hand. -->
 <main id="top">
-<section class="hero-band" id="hero">
-  <iframe class="app-bg" title="Pan, live. Type an equation." src="/app/?embed"></iframe>
+<section class="phero" id="hero">
+  <!-- The real thing behind the copy: equations typed and graphed live on Pan's plane, a slider sweeping. Decoration only. -->
+  <div class="hero-bg" aria-hidden="true" inert><svg class="plane" id="plane"></svg><div class="eqs" id="eqs"></div></div>
   <div class="hero-copy center">
     <p class="label">Pan, a graphing calculator</p>
     <h1 class="hero-h1">Type an equation. Watch it draw.</h1>
-  </div>
-</section>
-
-<section class="hero">
-  <div class="wrap center">
     <p class="lead">Functions, lists, sliders and 85 patterns. It graphs as you type.</p>
-    <div class="cta">
-      <a class="btn btn-solid" href="/app/">Open Pan</a>
-    </div>
+    <div class="cta"><a class="btn btn-solid" href="/app/">Open Pan</a></div>
     <p class="fine">Free on the web. $0.99 on iPhone, iPad and Mac.</p>
   </div>
 </section>

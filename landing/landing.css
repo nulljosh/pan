@@ -1,10 +1,5 @@
-@font-face { font-family: "Pan Sans"; src: url("fonts/PanSans-ExtraLight.woff2") format("woff2"); font-weight: 200; font-display: swap; }
-@font-face { font-family: "Pan Sans"; src: url("fonts/PanSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Pan Sans"; src: url("fonts/PanSans-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
-@font-face { font-family: "Pan Sans"; src: url("fonts/PanSans-Semibold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
-@font-face { font-family: "Pan Sans"; src: url("fonts/PanSans-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 /* Pan landing, dressed like Hermes: a near-black page in a thin blue frame, giant thin caps, tiny caps labels,
-   small square buttons, and full-bleed blue bands where plotted curves sit in scanlines. Pan Sans (Inter, renamed, quotes drawn as waves) over the system stack.
+   small square buttons, and full-bleed blue bands where plotted curves sit in scanlines. The system font, bold.
    Colours are brand/tokens.css (the accent) plus the ink and band shades below. */
 :root {
   --accent: #0b6ba8;          /* links and actions on paper, AA */
@@ -20,8 +15,8 @@
   --line: #dcdde1;
   --text: #1d1d1f;
   --sub: #5c5e66;
-  --display: "Pan Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font: "Pan Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
   --wrap: 1120px;
   --r-sq: 2px;
@@ -54,9 +49,9 @@ code { font-size: .9em; padding: 2px 6px; border-radius: var(--r-sq); background
 
 h1, h2, h3, .label { font-family: var(--display); }
 h1, h2, h3 { text-wrap: balance; }
-h1 { font-size: clamp(64px, 14vw, 216px); line-height: .9; font-weight: 200; text-transform: uppercase; letter-spacing: -.005em; }
-h2 { font-size: clamp(44px, 7.4vw, 112px); line-height: .92; font-weight: 200; text-transform: uppercase; }
-h3 { font-size: 28px; line-height: 32px; font-weight: 300; }
+h1 { font-size: clamp(48px, 7vw, 96px); line-height: .98; font-weight: 700; letter-spacing: -.04em; }
+h2 { font-size: clamp(44px, 7vw, 104px); line-height: .92; font-weight: 700; letter-spacing: -.035em; }
+h3 { font-size: 28px; line-height: 32px; font-weight: 600; letter-spacing: -.01em; }
 .label { font-size: 13px; line-height: 16px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--sub); margin-bottom: var(--sp-4); }
 
 /* the curve mark, in the accent, over a section title */
@@ -109,7 +104,7 @@ a:focus-visible, .btn:focus-visible { outline: 3px solid var(--ring); outline-of
 .frow .art { aspect-ratio: 3 / 2; background: var(--grain), color-mix(in srgb, #fff 6%, var(--band)); }
 .frow:nth-child(even) .art { order: 2; }
 .frow > div:not(.art) { padding: var(--sp-7) clamp(24px, 6vw, 96px); max-width: 560px; }
-.frow h3 { font-size: clamp(32px, 3.6vw, 52px); line-height: 1; font-weight: 200; }
+.frow h3 { font-size: clamp(32px, 3.6vw, 52px); line-height: 1; font-weight: 700; letter-spacing: -.03em; }
 .frow p:last-child { margin-top: var(--sp-4); color: var(--band-sub); }
 .cells { display: grid; grid-template-columns: repeat(3, 1fr); }
 .cell { padding: var(--sp-6) var(--sp-6) var(--sp-7); border-right: 1px solid var(--band-line); }
@@ -137,14 +132,14 @@ a:focus-visible, .btn:focus-visible { outline: 3px solid var(--ring); outline-of
 .plat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin-top: var(--sp-7); text-align: center; }
 .plat-row > div { padding: var(--sp-6); border: 1px solid var(--line); display: grid; gap: var(--sp-2); justify-items: center; align-content: start; }
 .plat-row small { font-family: var(--display); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--sub); }
-.plat-row b { font-family: var(--display); font-weight: 300; font-size: 40px; line-height: 44px; text-transform: uppercase; }
+.plat-row b { font-family: var(--display); font-weight: 700; font-size: 36px; line-height: 44px; letter-spacing: -.03em; }
 .plat-row p { color: var(--sub); font-size: 15px; line-height: 22px; margin-bottom: var(--sp-3); }
 
 .foot { text-align: center; padding: var(--sp-8) var(--sp-4) var(--sp-5); background: var(--bg); overflow: hidden; border-top: 1px solid var(--line); }
 .foot-top { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--sp-4); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--sp-7); text-align: left; }
 .foot-brand { display: grid; gap: var(--sp-2); align-content: start; }
 .foot-brand img { border-radius: var(--r-icon); }
-.foot-brand b { font-family: var(--display); font-weight: 300; font-size: 40px; line-height: 40px; text-transform: uppercase; }
+.foot-brand b { font-family: var(--display); font-weight: 700; font-size: 36px; line-height: 40px; letter-spacing: -.03em; }
 .foot-brand p { color: var(--sub); font-size: 15px; }
 .foot-cols { display: flex; flex-wrap: wrap; gap: var(--sp-8); }
 .foot-cols div { display: grid; gap: var(--sp-2); align-content: start; }
