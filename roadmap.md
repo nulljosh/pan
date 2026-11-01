@@ -66,4 +66,18 @@ jaybulb.com purchase. Not a blocker for current work.
 
 ## Ingested 2026-10-21
 - [x] (11-01: the iPhone panel was a fixed 34 percent strip whose list scrolled in a small window and ran under its rounded corners; now a native sheet with a strip, a third and full height, scrolling grows it first, the graph still pans under it) [P2] What's with the scrolling? Find the odd scroll behaviour (equation sheet over the graph) and fix it. (notes/attachments/2026-10-21/curvely-2.png)
-- [ ] [P2] What are the gaps vs Desmos? https://apps.apple.com/ca/app/desmos-graphing-calculator/id653517540 Diff the feature list and file the gaps here.
+- [x] (11-01: diffed against the Desmos listing and Pan's README and code; gaps filed below) [P2] What are the gaps vs Desmos? https://apps.apple.com/ca/app/desmos-graphing-calculator/id653517540 Diff the feature list and file the gaps here.
+- Gaps vs Desmos (2026-11-01), most used first. Pan already has curves, implicit, polar, parametric, points, inequalities, sliders with play, own functions, derivatives, piecewise, domain limits, lists, roots and crossings, a hover trace on web, and PNG export.
+  - [ ] Tables: an x column you type, y columns filled from a function, points plotted from the rows.
+  - [ ] Regressions: `y1 ~ m x1 + b` fits a table and shows m, b and r squared.
+  - [ ] Saved graphs: more than one graph kept on the device, and a share link that opens the same graph on the web.
+  - [ ] Draggable points: `(a, b)` tied to sliders moves when dragged.
+  - [ ] Integrals and sums: `int(f(x), 0, 1)` and `sum(n, 1, 10, n^2)` as values, plus shading the area under a curve.
+  - [ ] Statistics: mean, median, stdev on lists, histogram and box plot.
+  - [ ] Trace on iPhone and iPad: tap and drag along a curve with the coordinates shown (web has it).
+  - [ ] Labels on points and note rows between equations; folders to group rows.
+  - [ ] Degree mode for trig.
+  - [ ] Zoom to fit and a home button besides double tap.
+  - [ ] Line style per row (dashed, dotted, thickness) and a colour picker.
+  - [ ] Audio trace for blind users, the curve played as pitch (Desmos's best accessibility feature).
+  - Out of scope for now: 3D, the geometry tool, actions and tickers.
