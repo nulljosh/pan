@@ -197,6 +197,8 @@ html.js .reveal.in-view { opacity: 1; transform: none; transition: opacity .6s e
 .hero-copy { position: absolute; left: 0; right: 0; bottom: 0; padding: var(--sp-9) var(--sp-5) var(--sp-6); }
 .hero-copy .label { color: var(--band-sub); }
 .hero-copy h1 { margin-bottom: 0; }
+/* the hero H1 is the line that sells; the name sits in the nav and the label */
+.hero-copy .hero-h1 { font-size: clamp(30px, 7vw, 104px); line-height: .95; }
 .hero { padding-top: var(--sp-8); }
 .hero .lead { margin-top: 0; font-size: 21px; line-height: 28px; color: var(--text); }
 .hero .demo-wrap { margin-top: var(--sp-7); }
