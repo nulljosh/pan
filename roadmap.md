@@ -28,6 +28,7 @@ Each item lands on web, iOS and Mac together. Submit 2.0.0 once all are in and 1
 
 ## Store rename to Pan (after 2.0.0 clears review)
 - [ ] Rename the App Store listing from Curvely to Pan. Everything else became Pan on 2026-10-21 (Curvely, briefly Tangent, then Pan once an app named exactly "Tangent" turned up on the store). The listing waits on 2.0.0 clearing App Review, then the asc name probe. No app is named exactly "Pan" in the US, UK, Canada, Germany or Japan stores.
+  (blocked: Joshua picks the new name, 2026-11-01) Apple refused "Pan" on the 2.0.1 app info 2026-11-01 ("already being used"), so by the one-name rule the brand moves to a word Apple takes. Probed free: Secant, Hyperbola, Abscisse, Asymptotic, Nephroid, Involute. Taken: Abscissa Ordinate Asymptote Parabola Locus Vertex Isocline Conic Lemniscate Cardioid Cycloid Quadrant Plotter Cartesian Curvature Inflection Polar Ellipse Folium Trochoid Sinusoid Catenary Epicycle Astroid. iOS and Mac 2.0.1 drafts exist (metadata copied from 2.0.0) and keep the app info editable; listing restored to Curvely.
 
 ## Done, grapher -> curvely hostname rename
 
