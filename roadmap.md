@@ -65,5 +65,5 @@ jaybulb.com purchase. Not a blocker for current work.
 
 
 ## Ingested 2026-10-21
-- [ ] [P2] What's with the scrolling? Find the odd scroll behaviour (equation sheet over the graph) and fix it. (notes/attachments/2026-10-21/curvely-2.png)
+- [x] (11-01: the iPhone panel was a fixed 34 percent strip whose list scrolled in a small window and ran under its rounded corners; now a native sheet with a strip, a third and full height, scrolling grows it first, the graph still pans under it) [P2] What's with the scrolling? Find the odd scroll behaviour (equation sheet over the graph) and fix it. (notes/attachments/2026-10-21/curvely-2.png)
 - [ ] [P2] What are the gaps vs Desmos? https://apps.apple.com/ca/app/desmos-graphing-calculator/id653517540 Diff the feature list and file the gaps here.

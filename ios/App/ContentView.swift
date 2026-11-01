@@ -8,7 +8,8 @@ struct ContentView: View {
     @State private var equations: [Equation] = defaultEquations
     @State private var transform = GraphTransform()
     @State private var exportedImage: ExportedGraph?
-    @State private var panelCollapsed = false
+    /// iPhone: the equation sheet's height. Starts at a third so the plot shows above it.
+    @State private var detent: PresentationDetent = .fraction(0.34)
     /// Sliders whose play button is on, and the values they are sweeping through. Kept out of
     /// the row text so a playing slider does not rewrite and save it sixty times a second.
     @State private var playing: Set<String> = []
@@ -20,7 +21,7 @@ struct ContentView: View {
             .background(Theme.graphBackground)
             .onAppear(perform: restore)
             .task(id: playing) { await animateSliders() }
-            .sheet(item: $exportedImage) { export in
+            .sheet(item: horizontalSizeClass == .compact ? .constant(nil) : $exportedImage) { export in
                 ExportSheet(export: export)
             }
     }
@@ -44,18 +45,21 @@ struct ContentView: View {
         let compact = horizontalSizeClass == .compact
         GraphView(equations: drawn, vars: sliderValues, transform: $transform)
             .ignoresSafeArea()
-            .overlay(alignment: compact ? .bottom : .trailing) {
-                if compact {
-                    // Collapsible, so the whole plot is reachable on a phone.
-                    VStack(spacing: 0) {
-                        panelHandle
-                        if !panelCollapsed {
-                            sidebar.containerRelativeFrame(.vertical) { height, _ in height * 0.34 }
-                        }
-                    }
-                    .panGlass(in: RoundedRectangle(cornerRadius: 28))
-                    .padding(8)
-                } else {
+            // iPhone: a real sheet, like Maps. Scrolling the list grows it to full height before it scrolls,
+            // the grabber shrinks it to a strip so the whole plot is reachable, and the graph keeps taking
+            // drags and pinches underneath. It replaced a fixed 34 percent panel whose list scrolled in a
+            // small window and ran under the rounded corners (roadmap, 2026-10-21).
+            .sheet(isPresented: .constant(compact)) {
+                sidebar
+                    .presentationDetents([.height(72), .fraction(0.34), .large], selection: $detent)
+                    .presentationDragIndicator(.visible)
+                    .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.34)))
+                    .interactiveDismissDisabled()
+                    // One sheet at a time: on a phone the export sheet is shown from this one.
+                    .sheet(item: $exportedImage) { export in ExportSheet(export: export) }
+            }
+            .overlay(alignment: .trailing) {
+                if !compact {
                     sidebar
                         .frame(width: 320)
                         .panGlass(in: RoundedRectangle(cornerRadius: 28))
@@ -96,20 +100,6 @@ struct ContentView: View {
             )
                 .padding(16)
         }
-    }
-
-    private var panelHandle: some View {
-        Button {
-            withAnimation(.snappy) { panelCollapsed.toggle() }
-        } label: {
-            Image(systemName: panelCollapsed ? "chevron.up" : "chevron.down")
-                .font(.footnote.weight(.semibold))
-                .foregroundStyle(Theme.secondary)
-                .frame(maxWidth: .infinity, minHeight: 32)
-                .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel(panelCollapsed ? "Show equations" : "Hide equations")
     }
 
     // ponytail: no title bar and no zoom buttons. The graph says what app this is, and
