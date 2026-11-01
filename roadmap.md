@@ -1,5 +1,8 @@
 # Pan Roadmap
 
+## Name
+- [ ] Store name locked as Secant on the draft app info (2026-11-01, Joshua said handle it; read back three times). Next: the full rename to Secant everywhere, repo, folder, landing at secant.jaybulb.com, docs, app display name, per the one-name rule, then ship it with the next version.
+
 ## v3 to v10 (Joshua's ask 2026-10-21: "loop to v5-10")
 One major version per real feature batch, each on web, iOS and Mac, submitted once the last one clears review. Order is a proposal, Joshua can reshuffle.
 - v6 Saved graphs: a list of named graphs, a share link on web (state in the URL), iCloud sync on native.
