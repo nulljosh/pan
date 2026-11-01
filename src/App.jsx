@@ -129,7 +129,7 @@ export default function App() {
       color: 'var(--text)',
       overflow: 'hidden',
     }}>
-      <div className="main-layout">
+      <main className="main-layout">
         <div className="graph-pane">
           <Graph equations={curves} sliders={sliderScope} />
         </div>
@@ -172,7 +172,7 @@ export default function App() {
             ))}
           </div>
         </div>
-      </div>
+      </main>
 
     </div>
   );
