@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D7C55D51B5127A46DE15529 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC258A19B5F348FCB728720C /* ContentView.swift */; };
+		183D826CD64ED6BD64CCDE21 /* PanWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A79C2DC38EFFF1CF4BC1356 /* PanWatchApp.swift */; };
 		41212AB54E5942507027F259 /* CurvePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8F6D7572B542B300E3C19C /* CurvePageView.swift */; };
 		6F21C4A567BA0EFF4BE393FF /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BDC27D979E3E8509084516 /* Expression.swift */; };
-		886B4342C24C142FB4F7529D /* PanWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB324646FE8B2A2AD83D1AF /* PanWatchApp.swift */; };
 		9287449D97790B694200CFC8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08906CEE202B07E2126F3CB /* Theme.swift */; };
-		ADA51DB678727CC5383ACD26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A2306448D6E556A6016E91E /* Assets.xcassets */; };
+		B3D62283BB2A2270D756656A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D47CA60497DAFAD5B0A0B45E /* Assets.xcassets */; };
 		BE4A6DE3FD0BAC329459A768 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59FFBA49707440D067BA35F /* Presets.swift */; };
 		C9FD9FCC384798B121706537 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5956D13AEDCBA3A7F6822307 /* PlotView.swift */; };
 		CCD6C4A80DA27604067E637D /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBC3432318F804B9460636 /* Palette.swift */; };
+		EE6ECAFBF762B29801C026C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED412D8EFB32C53442DC37D /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A2306448D6E556A6016E91E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5956D13AEDCBA3A7F6822307 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
-		8BB324646FE8B2A2AD83D1AF /* PanWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanWatchApp.swift; sourceTree = "<group>"; };
+		5ED412D8EFB32C53442DC37D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		93BDC27D979E3E8509084516 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
+		9A79C2DC38EFFF1CF4BC1356 /* PanWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanWatchApp.swift; sourceTree = "<group>"; };
 		B1FBC3432318F804B9460636 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		B43884B814ECD5483999369A /* PanWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PanWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D47CA60497DAFAD5B0A0B45E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E59FFBA49707440D067BA35F /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
-		EC258A19B5F348FCB728720C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F08906CEE202B07E2126F3CB /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		FB8F6D7572B542B300E3C19C /* CurvePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvePageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -35,9 +35,11 @@
 		3D7E9F8C22A113BCAB72A936 = {
 			isa = PBXGroup;
 			children = (
+				D47CA60497DAFAD5B0A0B45E /* Assets.xcassets */,
+				5ED412D8EFB32C53442DC37D /* ContentView.swift */,
+				9A79C2DC38EFFF1CF4BC1356 /* PanWatchApp.swift */,
 				4A505D23D62D18208D655ABE /* Models */,
 				A65DE7D5A197C995042B64C1 /* Views */,
-				6C276A13AC2C027F9A806D5D /* watchos */,
 				6406137DD51AAC173F44334E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,19 +61,6 @@
 				B43884B814ECD5483999369A /* PanWatch.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		6C276A13AC2C027F9A806D5D /* watchos */ = {
-			isa = PBXGroup;
-			children = (
-				0A2306448D6E556A6016E91E /* Assets.xcassets */,
-				EC258A19B5F348FCB728720C /* ContentView.swift */,
-				8BB324646FE8B2A2AD83D1AF /* PanWatchApp.swift */,
-				4A505D23D62D18208D655ABE /* Models */,
-				A65DE7D5A197C995042B64C1 /* Views */,
-			);
-			name = watchos;
-			path = .;
 			sourceTree = "<group>";
 		};
 		A65DE7D5A197C995042B64C1 /* Views */ = {
@@ -143,7 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADA51DB678727CC5383ACD26 /* Assets.xcassets in Resources */,
+				B3D62283BB2A2270D756656A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,11 +143,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D7C55D51B5127A46DE15529 /* ContentView.swift in Sources */,
+				EE6ECAFBF762B29801C026C0 /* ContentView.swift in Sources */,
 				41212AB54E5942507027F259 /* CurvePageView.swift in Sources */,
 				6F21C4A567BA0EFF4BE393FF /* Expression.swift in Sources */,
 				CCD6C4A80DA27604067E637D /* Palette.swift in Sources */,
-				886B4342C24C142FB4F7529D /* PanWatchApp.swift in Sources */,
+				183D826CD64ED6BD64CCDE21 /* PanWatchApp.swift in Sources */,
 				C9FD9FCC384798B121706537 /* PlotView.swift in Sources */,
 				BE4A6DE3FD0BAC329459A768 /* Presets.swift in Sources */,
 				9287449D97790B694200CFC8 /* Theme.swift in Sources */,
