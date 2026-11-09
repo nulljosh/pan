@@ -50,6 +50,30 @@ private func uses(_ source: String, _ name: String) -> Bool {
     return false
 }
 
+private func mean(_ v: [Double]) -> Double { v.reduce(0, +) / Double(v.count) }
+private func median(_ v: [Double]) -> Double {
+    let s = v.sorted()
+    return s.count % 2 == 1 ? s[s.count / 2] : (s[s.count / 2 - 1] + s[s.count / 2]) / 2
+}
+/// Sample standard deviation, what Desmos calls stdev.
+private func stdev(_ v: [Double]) -> Double {
+    guard v.count > 1 else { return 0 }
+    let m = mean(v)
+    return (v.reduce(0) { $0 + ($1 - m) * ($1 - m) } / Double(v.count - 1)).squareRoot()
+}
+
+/// `mean(L)` or `median([1, 2, 3])` is one number, so it is swapped in before lists expand.
+/// An unknown list becomes nan: the row draws nothing instead of failing to compile.
+private func applyStats(_ source: String, lists: [String: [Double]]) -> String {
+    source.replacing(#/(^|[^A-Za-z_])(mean|median|stdev)\(\s*(\[[^\[\]]*\]|[a-zA-Z]\w*)\s*\)/#) { match in
+        let arg = String(match.3)
+        let items = arg.hasPrefix("[") ? parseItems(String(arg.dropFirst().dropLast())) : lists[arg.lowercased()]
+        guard let items, !items.isEmpty else { return match.1 + "nan" }
+        let value = match.2 == "mean" ? mean(items) : match.2 == "median" ? median(items) : stdev(items)
+        return match.1 + "(\(value))"
+    }
+}
+
 /// The rewritten row, compiled once, and one binding per copy to draw.
 /// `binds` is empty for a list definition and `[[:]]` for a row that uses no list.
 func expandRow(_ raw: String, lists: [String: [Double]]) -> (source: String, binds: [[String: Double]]) {
@@ -58,14 +82,15 @@ func expandRow(_ raw: String, lists: [String: [Double]]) -> (source: String, bin
     var local: [String: [Double]] = [:]
     var counter = 0
     func nextName() -> String { defer { counter += 1 }; return "qlist\(counter)" }
-    var source = trimmed
-    if let whole = trimmed.wholeMatch(of: #/\[(.*)\]/#), let points = parsePointList(String(whole.1)) {
+    let stated = applyStats(trimmed, lists: lists)
+    var source = stated
+    if let whole = stated.wholeMatch(of: #/\[(.*)\]/#), let points = parsePointList(String(whole.1)) {
         let (xn, yn) = (nextName(), nextName())
         local[xn] = points.xs
         local[yn] = points.ys
         source = "(\(xn), \(yn))"
     } else {
-        source = trimmed.replacing(#/\[([^\[\]]*)\]/#) { match in
+        source = stated.replacing(#/\[([^\[\]]*)\]/#) { match in
             guard let items = parseItems(String(match.1)) else { return String(match.0) }
             let name = nextName()
             local[name] = items

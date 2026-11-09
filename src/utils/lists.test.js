@@ -62,3 +62,15 @@ describe('evaluateRow', () => {
     expect(evaluateRow('(1, 2)').pointFn({})).toEqual([1, 2]);
   });
 });
+
+describe('statistics on lists', () => {
+  const lists = { L: [1, 2, 3, 4] };
+  it('swaps mean, median and stdev in as one number', () => {
+    expect(expandRow('mean(L)', lists)).toEqual({ source: '(2.5)', binds: [{}] });
+    expect(expandRow('median([1, 5, 2])', {}).source).toBe('(2)');
+    expect(Number(expandRow('stdev(L)', lists).source.slice(1, -1))).toBeCloseTo(1.2909944, 6);
+  });
+  it('leaves other uses of the list expanding', () => {
+    expect(expandRow('x + L + mean(L)', lists).binds).toHaveLength(4);
+  });
+});

@@ -40,6 +40,24 @@ function parsePointList(inner) {
   return { xs: pts.map((m) => Number(m[1])), ys: pts.map((m) => Number(m[2])) };
 }
 
+const mean = (v) => v.reduce((a, b) => a + b, 0) / v.length;
+const median = (v) => {
+  const s = [...v].sort((a, b) => a - b);
+  const mid = Math.floor(s.length / 2);
+  return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+};
+// Sample standard deviation, what Desmos calls stdev.
+const stdev = (v) => (v.length < 2 ? 0 : Math.sqrt(v.reduce((a, b) => a + (b - mean(v)) ** 2, 0) / (v.length - 1)));
+const STATS = { mean, median, stdev };
+
+// `mean(L)` or `median([1, 2, 3])` is one number, so it is swapped in before lists expand.
+function applyStats(source, lists) {
+  return source.replace(/(?<![A-Za-z_])(mean|median|stdev)\(\s*(\[[^\[\]]*\]|[a-zA-Z]\w*)\s*\)/g, (all, fn, arg) => {
+    const items = arg.startsWith('[') ? parseItems(arg.slice(1, -1)) : lists[arg];
+    return items?.length ? `(${STATS[fn](items)})` : all;
+  });
+}
+
 // -> { source, binds: [{ name: value }] } ; binds is [{}] when the row uses no list.
 export function expandRow(expr, lists) {
   const trimmed = expr.trim();
@@ -47,8 +65,9 @@ export function expandRow(expr, lists) {
   const local = {};
   let n = 0;
   const name = () => `qlist${n++}`;
-  let source = trimmed;
-  const whole = trimmed.match(/^\[(.*)\]$/);
+  const stated = applyStats(trimmed, lists);
+  let source = stated;
+  const whole = stated.match(/^\[(.*)\]$/);
   const pointList = whole && parsePointList(whole[1]);
   if (pointList) {
     const [xn, yn] = [name(), name()];
@@ -56,7 +75,7 @@ export function expandRow(expr, lists) {
     local[yn] = pointList.ys;
     source = `(${xn}, ${yn})`;
   } else {
-    source = trimmed.replace(/\[([^\[\]]*)\]/g, (all, inner) => {
+    source = stated.replace(/\[([^\[\]]*)\]/g, (all, inner) => {
       const items = parseItems(inner);
       if (!items) return all;
       const ln = name();
