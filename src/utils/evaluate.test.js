@@ -299,3 +299,11 @@ describe('degree mode', () => {
     expect(evaluate('asin(x)').fn(1, buildScope([], {}, true))).toBeCloseTo(90, 10);
   });
 });
+
+describe('integrals and sums', () => {
+  const at = (expr, x = 0) => evaluate(expr).fn(x, buildScope([], {}));
+  it('int(f, a, b) integrates over x', () => expect(at('int(x^2, 0, 3)')).toBeCloseTo(9, 8));
+  it('sum(n, a, b, f) adds the terms', () => expect(at('sum(n, 1, 10, n^2)')).toBe(385));
+  it('a value sits inside a larger row', () => expect(at('x + sum(k, 1, 3, k)', 2)).toBe(8));
+  it('nests', () => expect(at('sum(n, 1, 2, int(n x, 0, 1))')).toBeCloseTo(1.5, 8));
+});

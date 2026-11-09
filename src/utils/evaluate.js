@@ -155,8 +155,42 @@ export function desugar(expr) {
     const inner = s.slice(at + 5, end);
     s = s.slice(0, at) + `(${derivative(inner, 'x').toString()})` + s.slice(end + 1);
   }
+  // int(f, a, b) and sum(n, a, b, f): the body becomes an inline function for qint and qsum in the scope.
+  for (let from = 0, guard = 0; guard < 20; guard++) {
+    const m = /(?<![A-Za-z_])(int|sum)\(/.exec(s.slice(from));
+    if (!m) break;
+    const at = from + m.index;
+    const open = at + m[1].length;
+    let depth = 0;
+    let end = open;
+    for (; end < s.length; end++) {
+      if ('([{'.includes(s[end])) depth++;
+      else if (')]}'.includes(s[end]) && --depth === 0) break;
+    }
+    const parts = splitTop(s.slice(open + 1, end));
+    const call = m[1] === 'int' && parts.length === 3 ? `qint(qf(x) = (${parts[0]}), ${parts[1]}, ${parts[2]})`
+      : m[1] === 'sum' && parts.length === 4 && /^[a-zA-Z]\w*$/.test(parts[0]) ? `qsum(qf(${parts[0]}) = (${parts[3]}), ${parts[1]}, ${parts[2]})`
+      : null;
+    if (call) s = s.slice(0, at) + call + s.slice(end + 1);
+    from = at + (call ? 5 : m[1].length + 1); // past the name: nested calls inside the body still rewrite
+  }
   return s;
 }
+
+// Simpson's rule on 200 panels: plenty for one row's value, and cheap per pixel.
+const qint = (f, a, b) => {
+  const n = 200;
+  const h = (b - a) / n;
+  let total = f(a) + f(b);
+  for (let i = 1; i < n; i++) total += (i % 2 ? 4 : 2) * f(a + i * h);
+  return (total * h) / 3;
+};
+// ponytail: stops at 10000 terms so a huge bound cannot hang the graph.
+const qsum = (f, a, b) => {
+  let total = 0;
+  for (let i = Math.ceil(a), n = 0; i <= b && n < 10000; i++, n++) total += f(i);
+  return total;
+};
 
 // mathjs looks a function up in the scope first, so these replace its radian trig for one graph.
 const RAD = Math.PI / 180;
@@ -168,7 +202,7 @@ const DEGREE_TRIG = {
 // The scope every row evaluates in: slider values plus the functions `f(x) = ...` rows define,
 // each with numeric first and second derivatives for f'(x) and f''(x).
 export function buildScope(exprs, sliderValues, degrees = false) {
-  const scope = { ...sliderValues, ...(degrees ? DEGREE_TRIG : {}) };
+  const scope = { ...sliderValues, qint, qsum, ...(degrees ? DEGREE_TRIG : {}) };
   const H = 1e-4;
   for (const expr of exprs) {
     const def = parseFunctionDef(expr);

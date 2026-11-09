@@ -103,6 +103,10 @@ indirect enum Node {
     case userCall(String, order: Int, Node)
     /// `d/dx(...)`, taken numerically.
     case derivative(Node)
+    /// `int(f, a, b)`, integrated over x.
+    case integral(Node, Node, Node)
+    /// `sum(n, a, b, f)`.
+    case sum(String, Node, Node, Node)
     /// `0 < x < 2`: every link must hold, like mathjs chained comparisons. 1 or 0.
     case comparison([Node], [Character])
     /// `c ? a : b`, what piecewise and domain-limit braces desugar into.
@@ -241,6 +245,23 @@ private struct Parser {
         case .identifier(let name):
             position += 1
             if let value = constants[name] { return .constant(value) }
+            if name == "int" || name == "sum", case .lparen = current {
+                position += 1
+                var parts = [try ternary()]
+                while case .comma = current {
+                    position += 1
+                    parts.append(try ternary())
+                }
+                guard case .rparen = current else {
+                    throw ExpressionError.message("Missing closing parenthesis after \(name)(")
+                }
+                position += 1
+                if name == "int", parts.count == 3 { return .integral(parts[0], parts[1], parts[2]) }
+                if name == "sum", parts.count == 4, case .variable(let index) = parts[0] {
+                    return .sum(index, parts[1], parts[2], parts[3])
+                }
+                throw ExpressionError.message(name == "int" ? "Write int(f(x), a, b)" : "Write sum(n, a, b, f(n))")
+            }
             let builtIn = functions[name] != nil || name == "ddx"
             if !builtIn {
                 // `x(x+1)` multiplies. Any other name before a paren calls a function another
@@ -329,6 +350,29 @@ func evaluate(_ node: Node, _ scope: Scope) -> Double {
         case 2: return (f(v + h) - 2 * f(v) + f(v - h)) / (h * h)
         default: return f(v)
         }
+    case .integral(let body, let a, let b):
+        // Simpson's rule on 200 panels, matching the web.
+        let lo = evaluate(a, scope), hi = evaluate(b, scope)
+        let panels = 200, h = (hi - lo) / Double(panels)
+        var point = scope
+        var total = 0.0
+        for i in 0...panels {
+            point.x = lo + Double(i) * h
+            total += (i == 0 || i == panels ? 1 : i % 2 == 1 ? 4 : 2) * evaluate(body, point)
+        }
+        return total * h / 3
+    case .sum(let index, let a, let b, let body):
+        let lo = evaluate(a, scope).rounded(.up), hi = evaluate(b, scope)
+        guard lo.isFinite, hi.isFinite, lo <= hi else { return lo.isFinite && hi.isFinite ? 0 : .nan }
+        var total = 0.0
+        // ponytail: stops at 10000 terms so a huge bound cannot hang the graph.
+        for i in 0..<min(10000, Int(hi - lo) + 1) {
+            var point = scope
+            let value = lo + Double(i)
+            if index == "x" { point.x = value } else { point.vars = scope.vars.with([index: value]) }
+            total += evaluate(body, point)
+        }
+        return total
     case .derivative(let inner):
         let h = 1e-5 * max(1, abs(scope.x))
         var ahead = scope, behind = scope
@@ -372,6 +416,8 @@ func uses(_ name: String, _ node: Node) -> Bool {
     case .unaryMinus(let operand): return uses(name, operand)
     case .call(_, let argument), .userCall(_, _, let argument), .derivative(let argument):
         return uses(name, argument)
+    case .integral(let body, let a, let b): return uses(name, body) || uses(name, a) || uses(name, b)
+    case .sum(_, let a, let b, let body): return uses(name, a) || uses(name, b) || uses(name, body)
     case .comparison(let operands, _): return operands.contains { uses(name, $0) }
     case .conditional(let a, let b, let c): return uses(name, a) || uses(name, b) || uses(name, c)
     case .binary(_, let lhs, let rhs): return uses(name, lhs) || uses(name, rhs)

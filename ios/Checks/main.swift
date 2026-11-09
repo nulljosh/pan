@@ -305,4 +305,12 @@ do {
     check(abs(evaluate(tree, Scope(x: .pi / 2, vars: buildVars([], values: [:]))) - 1) < 1e-9, "radians stay the default")
 }
 
+do {
+    func value(_ source: String, x: Double = 0) -> Double { evaluate(try! compileSide(source), Scope(x: x, vars: Vars())) }
+    check(abs(value("int(x^2, 0, 3)") - 9) < 1e-8, "int integrates over x")
+    check(value("sum(n, 1, 10, n^2)") == 385, "sum adds the terms")
+    check(value("x + sum(k, 1, 3, k)", x: 2) == 8, "a sum sits inside a larger row")
+    check(abs(value("sum(n, 1, 2, int(n x, 0, 1))") - 1.5) < 1e-8, "int nests inside sum")
+}
+
 print("ok — \(checks) checks passed")

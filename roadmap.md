@@ -70,7 +70,8 @@ jaybulb.com purchase. Not a blocker for current work.
   - [ ] Regressions: `y1 ~ m x1 + b` fits a table and shows m, b and r squared.
   - [ ] Saved graphs: more than one graph kept on the device, and a share link that opens the same graph on the web.
   - [ ] Draggable points: `(a, b)` tied to sliders moves when dragged.
-  - [ ] Integrals and sums: `int(f(x), 0, 1)` and `sum(n, 1, 10, n^2)` as values, plus shading the area under a curve.
+  - [x] Integrals and sums: `int(f(x), 0, 1)` and `sum(n, 1, 10, n^2)` as values (2026-11-08, web live, apps with the next build).
+  - [ ] Shading the area under a curve.
   - [x] Statistics: mean, median, stdev on lists (2026-11-08, web live, apps with the next build).
   - [ ] Histogram and box plot.
   - [ ] Trace on iPhone and iPad: tap and drag along a curve with the coordinates shown (web has it).
