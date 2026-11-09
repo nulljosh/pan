@@ -6,6 +6,7 @@ struct ContentView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     @State private var equations: [Equation] = defaultEquations
+    @AppStorage("degrees") private var degrees = false
     @State private var transform = GraphTransform()
     @State private var exportedImage: ExportedGraph?
     /// iPhone: the equation sheet's height. Starts at a third so the plot shows above it.
@@ -18,7 +19,11 @@ struct ContentView: View {
     var body: some View {
         content
             .overlay(alignment: .topTrailing) { exportButton }
-            .overlay(alignment: .topLeading) { homeButton }
+            .overlay(alignment: .topLeading) {
+                HStack(spacing: 8) { homeButton; angleButton }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+            }
             .background(Theme.graphBackground)
             .onAppear(perform: restore)
             .task(id: playing) { await animateSliders() }
@@ -89,7 +94,8 @@ struct ContentView: View {
         buildVars(
             equations.map(\.source),
             values: Dictionary(equations.compactMap(\.compiled.slider).map { ($0.name, $0.value) }, uniquingKeysWith: { first, _ in first })
-                .merging(animated) { _, playing in playing }
+                .merging(animated) { _, playing in playing },
+            degrees: degrees
         )
     }
 
@@ -113,8 +119,19 @@ struct ContentView: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Reset the view")
-        .padding(.horizontal, 16)
-        .padding(.vertical, 8)
+    }
+
+    private var angleButton: some View {
+        Button { degrees.toggle() } label: {
+            Text(degrees ? "DEG" : "RAD")
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(Theme.text)
+                .frame(minWidth: 56, minHeight: 44)
+                .panGlass(in: Capsule())
+                .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(degrees ? "Angles in degrees, switch to radians" : "Angles in radians, switch to degrees")
     }
 
     // ponytail: no title bar and no zoom buttons. The graph says what app this is, and

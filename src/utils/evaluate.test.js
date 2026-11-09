@@ -290,3 +290,12 @@ describe('review fixes', () => {
     expect(parseFunctionDef('Log(x) = x^2/4')).toMatchObject({ name: 'Log' });
   });
 });
+
+describe('degree mode', () => {
+  it('reads trig in degrees and leaves radians alone', () => {
+    const { fn } = evaluate('sin(x)');
+    expect(fn(90, buildScope([], {}, true))).toBeCloseTo(1, 10);
+    expect(fn(Math.PI / 2, buildScope([], {}))).toBeCloseTo(1, 10);
+    expect(evaluate('asin(x)').fn(1, buildScope([], {}, true))).toBeCloseTo(90, 10);
+  });
+});

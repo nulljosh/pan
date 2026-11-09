@@ -121,6 +121,13 @@ let functions: [String: (Double) -> Double] = [
     "sign": { $0 > 0 ? 1 : ($0 < 0 ? -1 : 0) },
 ]
 
+private let degree = Double.pi / 180
+/// What `functions` does for trig, read in degrees instead.
+private let degreeTrig: [String: (Double) -> Double] = [
+    "sin": { sin($0 * degree) }, "cos": { cos($0 * degree) }, "tan": { tan($0 * degree) },
+    "asin": { asin($0) / degree }, "acos": { acos($0) / degree }, "atan": { atan($0) / degree },
+]
+
 private let constants: [String: Double] = [
     "pi": .pi, "e": M_E, "tau": 2 * .pi, "nan": .nan,
     "phi": (1 + 5.squareRoot()) / 2, // the golden ratio, mathjs has it too
@@ -275,6 +282,7 @@ private struct Parser {
 struct Vars: ExpressibleByDictionaryLiteral {
     var values: [String: Double] = [:]
     var functions: [String: (Double) -> Double] = [:]
+    var degrees = false
 
     init(values: [String: Double] = [:]) { self.values = values }
 
@@ -309,7 +317,9 @@ func evaluate(_ node: Node, _ scope: Scope) -> Double {
     case .unaryMinus(let operand):
         return -evaluate(operand, scope)
     case .call(let name, let argument):
-        return functions[name]?(evaluate(argument, scope)) ?? .nan
+        let value = evaluate(argument, scope)
+        if scope.vars.degrees, let trig = degreeTrig[name] { return trig(value) }
+        return functions[name]?(value) ?? .nan
     case .userCall(let name, let order, let argument):
         guard let f = scope.vars.functions[name] else { return .nan }
         let v = evaluate(argument, scope)

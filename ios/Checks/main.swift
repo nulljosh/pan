@@ -295,4 +295,11 @@ for pattern in patterns {
     check(drew, "\(pattern.name) draws something")
 }
 
+do {
+    let tree = try! compileSide("sin(x)")
+    let on = buildVars([], values: [:], degrees: true)
+    check(abs(evaluate(tree, Scope(x: 90, vars: on)) - 1) < 1e-9, "degree mode reads sin(90) as 1")
+    check(abs(evaluate(tree, Scope(x: .pi / 2, vars: buildVars([], values: [:]))) - 1) < 1e-9, "radians stay the default")
+}
+
 print("ok — \(checks) checks passed")

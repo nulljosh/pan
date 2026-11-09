@@ -74,7 +74,7 @@ jaybulb.com purchase. Not a blocker for current work.
   - [ ] Statistics: mean, median, stdev on lists, histogram and box plot.
   - [ ] Trace on iPhone and iPad: tap and drag along a curve with the coordinates shown (web has it).
   - [ ] Labels on points and note rows between equations; folders to group rows.
-  - [ ] Degree mode for trig.
+  - [x] Degree mode for trig (2026-11-08, web live, apps with the next build).
   - [x] Home button besides double tap (2026-11-08, web live, apps with the next build).
   - [ ] Zoom to fit.
   - [ ] Line style per row (dashed, dotted, thickness) and a colour picker.

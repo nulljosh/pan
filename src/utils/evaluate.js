@@ -158,10 +158,17 @@ export function desugar(expr) {
   return s;
 }
 
+// mathjs looks a function up in the scope first, so these replace its radian trig for one graph.
+const RAD = Math.PI / 180;
+const DEGREE_TRIG = {
+  sin: (v) => Math.sin(v * RAD), cos: (v) => Math.cos(v * RAD), tan: (v) => Math.tan(v * RAD),
+  asin: (v) => Math.asin(v) / RAD, acos: (v) => Math.acos(v) / RAD, atan: (v) => Math.atan(v) / RAD,
+};
+
 // The scope every row evaluates in: slider values plus the functions `f(x) = ...` rows define,
 // each with numeric first and second derivatives for f'(x) and f''(x).
-export function buildScope(exprs, sliderValues) {
-  const scope = { ...sliderValues };
+export function buildScope(exprs, sliderValues, degrees = false) {
+  const scope = { ...sliderValues, ...(degrees ? DEGREE_TRIG : {}) };
   const H = 1e-4;
   for (const expr of exprs) {
     const def = parseFunctionDef(expr);

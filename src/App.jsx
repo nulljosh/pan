@@ -21,6 +21,7 @@ const INITIAL = [
 export default function App() {
   const [equations, setEquations] = useState(INITIAL);
   const [sliderValues, setSliderValues] = useState({});
+  const [degrees, setDegrees] = useState(false);
   const [panelCollapsed, setPanelCollapsed] = useState(false);
   const [patternCategory, setPatternCategory] = useState(PATTERN_CATEGORIES[0]);
   const [playing, setPlaying] = useState({}); // slider name -> true while its play button is on
@@ -35,7 +36,8 @@ export default function App() {
   const sliderScope = useMemo(() => buildScope(
     equations.map((eq) => eq.expr),
     Object.fromEntries(sliders.map((s) => [s.name, s.value])),
-  ), [equations, sliders]);
+    degrees,
+  ), [equations, sliders, degrees]);
 
   // A row that uses a list draws once per element; each copy binds the list to one value.
   // ponytail: the bound values are spread into the scope per evaluation, fine for lists of a few hundred.
@@ -132,6 +134,9 @@ export default function App() {
       <main className="main-layout">
         <div className="graph-pane">
           <Graph equations={curves} sliders={sliderScope} />
+          <button type="button" className="graph-angle glass" aria-pressed={degrees} aria-label={degrees ? 'Angles in degrees, switch to radians' : 'Angles in radians, switch to degrees'} onClick={() => setDegrees((d) => !d)}>
+            {degrees ? 'DEG' : 'RAD'}
+          </button>
         </div>
 
         <div className={`sidebar-pane glass${panelCollapsed ? ' collapsed' : ''}`}>

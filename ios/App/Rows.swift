@@ -165,11 +165,12 @@ func parseFunctionDef(_ raw: String) -> (name: String, param: String, body: Stri
 }
 
 /// The scope every row evaluates in: slider values plus the functions `f(x) = ...` rows define.
-func buildVars(_ sources: [String], values: [String: Double]) -> Vars {
+func buildVars(_ sources: [String], values: [String: Double], degrees: Bool = false) -> Vars {
     // The closures need the finished table so f can call g; a box hands it to them after.
     final class Box { var vars = Vars(); var depth = 0 }
     let box = Box()
     var vars = Vars(values: values)
+    vars.degrees = degrees
     for source in sources {
         guard let def = parseFunctionDef(source), let body = try? compileSide(def.body) else { continue }
         vars.functions[def.name] = { v in

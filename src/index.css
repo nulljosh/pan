@@ -46,6 +46,21 @@ input:focus { outline: none; }
   inset: 0;
 }
 
+.graph-angle {
+  position: absolute;
+  top: 12px;
+  left: 64px;
+  height: 44px;
+  min-width: 56px;
+  padding: 0 12px;
+  border-radius: 22px;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .graph-home {
   position: absolute;
   top: 12px;
