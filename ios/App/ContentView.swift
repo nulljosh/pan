@@ -18,6 +18,7 @@ struct ContentView: View {
     var body: some View {
         content
             .overlay(alignment: .topTrailing) { exportButton }
+            .overlay(alignment: .topLeading) { homeButton }
             .background(Theme.graphBackground)
             .onAppear(perform: restore)
             .task(id: playing) { await animateSliders() }
@@ -102,8 +103,22 @@ struct ContentView: View {
         }
     }
 
+    private var homeButton: some View {
+        Button { transform = GraphTransform() } label: {
+            Image(systemName: "house")
+                .foregroundStyle(Theme.text)
+                .frame(width: 44, height: 44)
+                .panGlass(in: Circle())
+                .contentShape(Circle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Reset the view")
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+    }
+
     // ponytail: no title bar and no zoom buttons. The graph says what app this is, and
-    // pinch, drag and double-tap-to-reset already live in GraphView.
+    // pinch and drag already live in GraphView.
     private var exportButton: some View {
         Button(action: exportGraph) {
             Image(systemName: "square.and.arrow.up")

@@ -75,7 +75,8 @@ jaybulb.com purchase. Not a blocker for current work.
   - [ ] Trace on iPhone and iPad: tap and drag along a curve with the coordinates shown (web has it).
   - [ ] Labels on points and note rows between equations; folders to group rows.
   - [ ] Degree mode for trig.
-  - [ ] Zoom to fit and a home button besides double tap.
+  - [x] Home button besides double tap (2026-11-08, web live, apps with the next build).
+  - [ ] Zoom to fit.
   - [ ] Line style per row (dashed, dotted, thickness) and a colour picker.
   - [ ] Audio trace for blind users, the curve played as pitch (Desmos's best accessibility feature).
   - Out of scope for now: 3D, the geometry tool, actions and tickers.

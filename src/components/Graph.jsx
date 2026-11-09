@@ -402,6 +402,9 @@ export default function Graph({ equations, sliders }) {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       />
+      <button type="button" className="graph-home glass" aria-label="Reset the view" title="Reset the view" onClick={resetView}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2.5 11.2a1 1 0 0 0 1.3 1.5L5 11.7V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-8.3l1.2 1a1 1 0 0 0 1.3-1.5L12 3Z"/></svg>
+      </button>
     </div>
   );
 }

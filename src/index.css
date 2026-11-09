@@ -46,6 +46,20 @@ input:focus { outline: none; }
   inset: 0;
 }
 
+.graph-home {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  color: inherit;
+  cursor: pointer;
+}
+
 .sidebar-pane {
   position: absolute;
   top: 12px;
