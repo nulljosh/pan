@@ -26,6 +26,9 @@ Each item lands on web, iOS and Mac together. Submit 2.0.0 once all are in and 1
 ## State 2026-10-21
 2.0.0 is in App Review on iOS and Mac (1.2.6 was pulled and folded in). The web is live with v3 to v5 and the patterns; native 3.0.0 ships once 2.0.0 clears. Light mode follows the system setting on all three. The landing hero is now the live app, deployed 2026-10-21.
 
+## iOS 2.0.1 rejected (2026-11-11)
+- [ ] iOS 2.0.1 rejected (seen 2026-11-11): read the Resolution Center thread, fix, resubmit.
+
 ## Store rename to Pan (after 2.0.0 clears review)
 - [ ] Rename the App Store listing from Curvely to Pan. Everything else became Pan on 2026-10-21 (Curvely, briefly Tangent, then Pan once an app named exactly "Tangent" turned up on the store). The listing waits on 2.0.0 clearing App Review, then the asc name probe. No app is named exactly "Pan" in the US, UK, Canada, Germany or Japan stores.
   (blocked: Joshua picks the new name, 2026-11-01) Apple refused "Pan" on the 2.0.1 app info 2026-11-01 ("already being used"), so by the one-name rule the brand moves to a word Apple takes. Probed free: Secant, Hyperbola, Abscisse, Asymptotic, Nephroid, Involute. Taken: Abscissa Ordinate Asymptote Parabola Locus Vertex Isocline Conic Lemniscate Cardioid Cycloid Quadrant Plotter Cartesian Curvature Inflection Polar Ellipse Folium Trochoid Sinusoid Catenary Epicycle Astroid. iOS and Mac 2.0.1 drafts exist (metadata copied from 2.0.0) and keep the app info editable; listing restored to Curvely. 2026-11-07: build 202611070838 (iPhone equations sheet, Pan home-screen name and icon) uploaded and attached to both 2.0.1 drafts, What's New written, validate 0 blocking; waiting only on the submit.
