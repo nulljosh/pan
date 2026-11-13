@@ -27,11 +27,9 @@ Each item lands on web, iOS and Mac together. Submit 2.0.0 once all are in and 1
 2.0.0 is in App Review on iOS and Mac (1.2.6 was pulled and folded in). The web is live with v3 to v5 and the patterns; native 3.0.0 ships once 2.0.0 clears. Light mode follows the system setting on all three. The landing hero is now the live app, deployed 2026-10-21.
 
 ## iOS 2.0.1 rejected (2026-11-11)
-- [ ] iOS 2.0.1 rejected (seen 2026-11-11): read the Resolution Center thread, fix, resubmit.
+- [ ] iOS 2.0.1 rejected 2026-11-10 under 2.3.8 (store and device names differed). Name fixed to Conics on 2026-11-13; resubmit still blocked, see Ingested 2026-11-13.
 
 ## Store rename to Pan (after 2.0.0 clears review)
-- [ ] Rename the App Store listing from Curvely to Pan. Everything else became Pan on 2026-10-21 (Curvely, briefly Tangent, then Pan once an app named exactly "Tangent" turned up on the store). The listing waits on 2.0.0 clearing App Review, then the asc name probe. No app is named exactly "Pan" in the US, UK, Canada, Germany or Japan stores.
-  (blocked: Joshua picks the new name, 2026-11-01) Apple refused "Pan" on the 2.0.1 app info 2026-11-01 ("already being used"), so by the one-name rule the brand moves to a word Apple takes. Probed free: Secant, Hyperbola, Abscisse, Asymptotic, Nephroid, Involute. Taken: Abscissa Ordinate Asymptote Parabola Locus Vertex Isocline Conic Lemniscate Cardioid Cycloid Quadrant Plotter Cartesian Curvature Inflection Polar Ellipse Folium Trochoid Sinusoid Catenary Epicycle Astroid. iOS and Mac 2.0.1 drafts exist (metadata copied from 2.0.0) and keep the app info editable; listing restored to Curvely. 2026-11-07: build 202611070838 (iPhone equations sheet, Pan home-screen name and icon) uploaded and attached to both 2.0.1 drafts, What's New written, validate 0 blocking; waiting only on the submit.
 
 ## Done, grapher -> curvely hostname rename
 
@@ -87,7 +85,4 @@ jaybulb.com purchase. Not a blocker for current work.
   - Out of scope for now: 3D, the geometry tool, actions and tickers.
 
 ## Ingested 2026-11-13
-- [ ] Note: "Pan or curvely. Rejected on apple?". Report its review status and settle the name (store still Curvely, picks are in the vault). Last known (root roadmap, 2026-11-08): waiting on Apple. Could not re-pull today: the asc API is blocked by an unaccepted Apple agreement (see vault blocked-on-joshua.md).
-- [ ] asc 2026-11-13: iOS 2.0.1 rejected 2026-11-10, guideline 2.3.8: store name Curvely does not match the on-device name Pan. Fix is one name in both places: either set the display name to Curvely, or rename the listing to a free pick (Secant, Hyperbola, Abscisse, Asymptotic, Nephroid, Involute). Joshua picks. Mac 2.0.1 is live.
-- [x] 2026-11-13: name is Conics (Joshua: "you decide, shorter is better"). Store name, display name, store text set; iOS 2.0.1 rebuilt (build 202611130942, attached to the version). Resubmit NOT done: `asc review submissions-submit --id 3afe0a73-5119-4a00-ae2c-98c6e054fe9f --confirm` keeps answering "Version is not ready to be submitted yet" (5 min of retries). Retry later; if it persists, check the stray draft submission 7c687b6a and the Curvely Pro IAP (MISSING_METADATA). Mac build still says Pan, ship one after iOS clears.
-- [ ] Finish the rename sweep with the `rename` skill: repo, README, landing, pan.jaybulb.com, docs. Store and device already say Hyperbola.
+- [ ] Finish the rename sweep with the `rename` skill: repo, README, landing, pan.jaybulb.com, docs. Store and device already say Conics.
