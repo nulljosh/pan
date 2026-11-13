@@ -85,3 +85,6 @@ jaybulb.com purchase. Not a blocker for current work.
   - [ ] Line style per row (dashed, dotted, thickness) and a colour picker.
   - [ ] Audio trace for blind users, the curve played as pitch (Desmos's best accessibility feature).
   - Out of scope for now: 3D, the geometry tool, actions and tickers.
+
+## Ingested 2026-11-13
+- [ ] Note: "Pan or curvely. Rejected on apple?". Report its review status and settle the name (store still Curvely, picks are in the vault). Last known (root roadmap, 2026-11-08): waiting on Apple. Could not re-pull today: the asc API is blocked by an unaccepted Apple agreement (see vault blocked-on-joshua.md).
