@@ -1,4 +1,4 @@
-# Pan loop handoff (2026-10-22, early morning)
+# Pan loop handoff (2026-11-13, morning)
 
 ## What the loop is
 
@@ -11,7 +11,8 @@ Joshua's `/loop` for Pan. It works down `roadmap.md` one major version at a time
 - The repo is nulljosh/pan, public, Apache 2.0, checked out at `~/Documents/Code/pan`. Labs no longer tracks it. CI was green on web tests, Swift checks and docs.
 - The landing hero is the live app in a frame above a blue title strip, with the Pan engraving in its own band above the footer. Deployed and verified live.
 - The App Store privacy URL is curvely.jaybulb.com/privacy.html, which still serves.
-- Everything is Pan as of 2026-10-21: repo, folder, pan.jaybulb.com, landing, web app, native product name, font and icon bundle. Kept on purpose: bundle IDs, the Android package, the grapher Pages project, the curvely localStorage key, and the old curvely. and tangent. hosts. The App Store listing is still Curvely until 2.0.0 clears review.
+- Name as of 2026-11-13: the store listing, home screen name and store text say Conics. iOS 2.0.1 was rejected under 2.3.8 (store said Curvely, device said Pan); the new build is attached, but resubmit is blocked with "Version is not ready to be submitted yet". The Mac build still says Pan.
+- Everything is Pan as of 2026-10-21: repo, folder, pan.jaybulb.com, landing, web app, native product name, font and icon bundle. Kept on purpose: bundle IDs, the Android package, the grapher Pages project, the curvely localStorage key, and the old curvely. and tangent. hosts. The App Store listing says Conics as of 2026-11-13 (see above).
 - Roadmap ingested from Apple Notes on 2026-10-21: the store name (P1, waits on Apple accepting Pan), an odd scroll where the equation sheet sits over the graph (P2), and a gap list against Desmos (P2).
 - The roadmap runs to v100. v6 is the next open version.
 
@@ -22,7 +23,8 @@ Joshua's `/loop` for Pan. It works down `roadmap.md` one major version at a time
 3. Fix the scroll bug where the equation sheet sits over the graph (P2, ingested 2026-10-21).
 4. File the Desmos feature gaps in `roadmap.md` (P2, ingested 2026-10-21).
 5. v7 onward in `roadmap.md` order, on all three platforms each time.
-6. Store rename to Pan once 2.0.0 clears review. Run the asc name probe on Pan first (asc-name-creator), then the store listing. Do not start it before 2.0.0 clears.
+6. Resubmit iOS 2.0.1 under Conics. Retry the submit; if it keeps saying not ready, check the stray draft submission and the Curvely Pro IAP (missing metadata).
+7. Finish the rename sweep with the rename skill: repo, README, landing, pan.jaybulb.com, docs. Store and device already say Conics; the Mac build still says Pan.
 
 ## Restart prompt
 
