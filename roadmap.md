@@ -88,3 +88,4 @@ jaybulb.com purchase. Not a blocker for current work.
 
 ## Ingested 2026-11-13
 - [ ] Note: "Pan or curvely. Rejected on apple?". Report its review status and settle the name (store still Curvely, picks are in the vault). Last known (root roadmap, 2026-11-08): waiting on Apple. Could not re-pull today: the asc API is blocked by an unaccepted Apple agreement (see vault blocked-on-joshua.md).
+- [ ] asc 2026-11-13: iOS 2.0.1 rejected 2026-11-10, guideline 2.3.8: store name Curvely does not match the on-device name Pan. Fix is one name in both places: either set the display name to Curvely, or rename the listing to a free pick (Secant, Hyperbola, Abscisse, Asymptotic, Nephroid, Involute). Joshua picks. Mac 2.0.1 is live.
